@@ -16,7 +16,7 @@ resource "aws_eip" "web-1" {
   vpc      = true
 }
 
-resource "aws_route_table" "us-west-1a-public" {
+resource "aws_route_table" "us-west-1b-public" {
   vpc_id = aws_vpc.main_vpc.id
 
   route {
@@ -29,12 +29,12 @@ resource "aws_route_table" "us-west-1a-public" {
   }
 }
 
-resource "aws_route_table_association" "us-west-1a-public" {
-  subnet_id      = aws_subnet.us-west-1a-public.id
-  route_table_id = aws_route_table.us-west-1a-public.id
+resource "aws_route_table_association" "us-west-1b-public" {
+  subnet_id      = aws_subnet.us-west-1b-public.id
+  route_table_id = aws_route_table.us-west-1b-public.id
 }
 
-resource "aws_route_table" "us-west-1a-private" {
+resource "aws_route_table" "us-west-1b-private" {
   vpc_id = aws_vpc.main_vpc.id
 
   route {
@@ -47,27 +47,27 @@ resource "aws_route_table" "us-west-1a-private" {
   }
 }
 
-resource "aws_route_table_association" "us-west-1a-private" {
-  subnet_id      = aws_subnet.us-west-1a-private.id
-  route_table_id = aws_route_table.us-west-1a-private.id
+resource "aws_route_table_association" "us-west-1b-private" {
+  subnet_id      = aws_subnet.us-west-1b-private.id
+  route_table_id = aws_route_table.us-west-1b-private.id
 }
 
 resource "aws_subnet" "us-west-1b-public" {
   vpc_id = aws_vpc.main_vpc.id
 
   cidr_block        = var.public_subnet_cidr
-  availability_zone = "us-west-1a"
+  availability_zone = "us-west-1b"
 
   tags = {
     Name = "Public Subnet"
   }
 }
 
-resource "aws_subnet" "us-west-1a-private" {
+resource "aws_subnet" "us-west-1b-private" {
   vpc_id = aws_vpc.main_vpc.id
 
   cidr_block        = var.private_subnet_cidr
-  availability_zone = "us-west-1a"
+  availability_zone = "us-west-1b"
 
   tags = {
     Name = "Private Subnet"
