@@ -16,7 +16,7 @@ resource "aws_eip" "web-1" {
   vpc      = true
 }
 
-resource "aws_route_table" "eu-west-1a-public" {
+resource "aws_route_table" "us-west-1a-public" {
   vpc_id = aws_vpc.main_vpc.id
 
   route {
